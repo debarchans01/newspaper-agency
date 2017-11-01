@@ -28,6 +28,7 @@ CREATE TABLE [dbo].[User]
     [City] NVARCHAR(50) NOT NULL, 
     [Pincode] NCHAR(10) NOT NULL, 
     [State] NVARCHAR(50) NOT NULL, 
-    [Country] NVARCHAR(50) NOT NULL
+    [Country] NVARCHAR(50) NOT NULL, 
+    [User_type] NVARCHAR(50) NOT NULL
 )
 
