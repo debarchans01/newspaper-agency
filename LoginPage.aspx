@@ -10,18 +10,20 @@
     </p>
     <p style="margin-left: 40px">
         Enter username :
-        <input id="Username" type="text" /></p>
-    <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="Username" ></asp:RequiredFieldValidator>
+        <input id="text_Username" type="text" runat="server"/></p>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="text_Username" ErrorMessage="*required" ForeColor="Red"></asp:RequiredFieldValidator>
     <p style="margin-left: 40px">
         Enter Password :
-        <input id="Password" type="password" /></p>
+        <input id="text_Password" type="password" runat="server"/></p><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="text_Password" ErrorMessage="*required" ForeColor="Red"></asp:RequiredFieldValidator>
     <p style="margin-left: 40px">
         Login as :
         <asp:DropDownList ID="DropDownList1" runat="server">
         </asp:DropDownList>
     </p>
     <p style="margin-left: 40px">
-        <input id="Submit1" type="submit" value="Login" runat="server" onserverclick="Submit1_ServerClick"/></p>
+        <input id="Submit1" type="submit" value="Login" runat="server" onserverclick="Submit1_ServerClick"/>&nbsp;&nbsp;
+        <asp:Label ID="Error_Label" runat="server" Text=""></asp:Label>
+    </p>
     
 </asp:Content>
 
