@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -30,7 +30,7 @@ public partial class SignUp : System.Web.UI.Page
         try
         {
             con1.Open();
-            SqlCommand command = new SqlCommand("insert into dbo.User(Name, Email_id, Username, Password, Address, City, Pincode, State, Country) VALUES(@var1, @var2, @var3, @var4, @var5, @var6, @var7, @var8, @var9)", con1);
+            SqlCommand command = new SqlCommand("insert Users(Name, Email_id, Username, Password, Address, City, Pincode, State, Country,User_type) VALUES(@var1, @var2, @var3, @var4, @var5, @var6, @var7, @var8, @var9, @var10)", con1);
             command.Parameters.AddWithValue("@var1", name);
             command.Parameters.AddWithValue("@var2", emailid);
             command.Parameters.AddWithValue("@var3", username);
@@ -40,12 +40,13 @@ public partial class SignUp : System.Web.UI.Page
             command.Parameters.AddWithValue("@var7", pincode);
             command.Parameters.AddWithValue("@var8", state);
             command.Parameters.AddWithValue("@var9", country);
+            command.Parameters.AddWithValue("@var10", DropDownList2.SelectedItem.Text);
 
 
             SqlDataReader reader = command.ExecuteReader();
 
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             ErrorLabel1.Text = ex.ToString();
         }
