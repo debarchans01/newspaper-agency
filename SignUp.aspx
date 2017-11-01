@@ -1,7 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="SignUp.aspx.cs" Inherits="SignUp" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="SignUp.aspx.cs" Inherits="SignUp" %>
 
 <script runat="server">
-
     
 </script>
 
@@ -51,10 +50,16 @@
         Pincode -
         <input id="Text8" type="text" runat="server"/></p>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="Text8" ErrorMessage="*required" ForeColor="Red"></asp:RequiredFieldValidator>
+    <br />
+    User Type -
+    <asp:DropDownList ID="DropDownList2" runat="server">
+        <asp:ListItem>Subscriber</asp:ListItem>
+        <asp:ListItem>Employee</asp:ListItem>
+    </asp:DropDownList>
+    <br />
     <p>
         <input id="SubmitButton1" type="submit" value="Sign Up" runat="server" onserverclick="SubmitButton1_Clicked"/></p>
     <p>
         <asp:Label ID="ErrorLabel1" runat="server" Text=""></asp:Label>
     </p>
 </asp:Content>
-
