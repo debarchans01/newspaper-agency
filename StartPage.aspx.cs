@@ -11,7 +11,8 @@ public partial class StartPage : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-
+            Session["username"] = null;
+            Session["theme"] = null;
         }
     }
 

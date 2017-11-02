@@ -19,10 +19,6 @@ public partial class LoginPage : System.Web.UI.Page
                 DropDownList1.Items.Add("Subscriber");
                 DropDownList1.Items.Add("Employee");
             }
-            else
-            {
-                Response.Redirect("UserHomePage.aspx?");
-            }
         }
     }
 
