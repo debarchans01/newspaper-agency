@@ -11,7 +11,7 @@ public partial class EmployeeHomePage : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            Label1.Text = "hello" + Session["username"].ToString();
+            Label1.Text = "Welcome " + Session["username"].ToString();
         }
     }
 }
