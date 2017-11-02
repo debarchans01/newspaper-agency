@@ -10,13 +10,14 @@ CREATE TABLE [dbo].[Subscription] (
     [S_ID]        INT  IDENTITY(1,1)  NOT NULL,
     [Username]    NVARCHAR (50) NOT NULL,
     [P_Name]      NVARCHAR (50) NOT NULL,
-    [Status]      NCHAR (10)    NOT NULL,
+    [Status]      NVARCHAR (10)    NOT NULL,
     [Start_date]  DATE          NULL,
     [End_date]    DATE          NULL,
     [Pause_start] DATE          NULL,
     [Pause_end]   DATE          NULL,
     [Region] NVARCHAR(50) NOT NULL, 
     [Pincode] NCHAR(10) NOT NULL, 
+    [Monthly_Rate] NCHAR (10)  NOT NULL,
     PRIMARY KEY CLUSTERED ([S_ID] ASC)
 );
 
