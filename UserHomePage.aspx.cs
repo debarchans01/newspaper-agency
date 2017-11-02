@@ -13,5 +13,27 @@ public partial class UserHomePage : System.Web.UI.Page
         {
             Label1.Text = "hello " + (string)Session["username"];
         }
+
+    }
+    protected void Add_Subscription(object sender, EventArgs e)
+    {
+        Response.Redirect("AddSubscriptionPage.aspx");
+    }
+
+    protected void Modify_Subscription(object sender, EventArgs e)
+    {
+        Response.Redirect("ModifySubscriptionPage.aspx");
+    }
+
+    protected void Billing_Details(object sender, EventArgs e)
+    {
+        Response.Redirect("BillinDetailsPage.aspx");
+    }
+
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Session.Clear();
+        Response.Redirect("LoginPage.aspx");
     }
 }

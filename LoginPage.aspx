@@ -21,8 +21,10 @@
         </asp:DropDownList>
     </p>
     <p style="margin-left: 40px">
-        <input id="Submit1" type="submit" value="Login" runat="server" onserverclick="Submit1_ServerClick"/>&nbsp;&nbsp;
-        <asp:Label ID="Error_Label" runat="server" Text=""></asp:Label>
+        <input id="Submit1" type="submit" value="Login" runat="server" onserverclick="Submit1_ServerClick"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="Button1" runat="server" Text="SignUp" OnClick="Button1_Click" />
+    </p>
+    <p style="margin-left: 40px">
+        &nbsp;<asp:Label ID="Error_Label" runat="server" Text=""></asp:Label>
     </p>
     
 </asp:Content>
