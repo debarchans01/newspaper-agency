@@ -51,4 +51,7 @@ public partial class SignUp : System.Web.UI.Page
             ErrorLabel1.Text = ex.ToString();
         }
     }
+
+}
+
 }
