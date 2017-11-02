@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 
 public partial class SignUp : System.Web.UI.Page
 {
+    int flag = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -60,12 +61,21 @@ public partial class SignUp : System.Web.UI.Page
         catch (Exception ex)
         {
             ErrorLabel1.Text = ex.ToString();
+            flag = 1;
         }
         finally
         {
             con1.Close();
-            Response.Redirect("StartPage.aspx");
+            if (flag == 0)
+                Response.Redirect("StartPage.aspx");
+            else
+                ErrorLabel1.Text = "Some Error Occurred, Try Again.";
         }
     }
 
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("LoginPage.aspx");
+    }
 }

@@ -14,8 +14,15 @@ public partial class LoginPage : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            DropDownList1.Items.Add("Subscriber");
-            DropDownList1.Items.Add("Employee");
+            if (Session["username"] == null)
+            {
+                DropDownList1.Items.Add("Subscriber");
+                DropDownList1.Items.Add("Employee");
+            }
+            else
+            {
+                Response.Redirect("UserHomePage.aspx?");
+            }
         }
     }
 
@@ -50,7 +57,24 @@ public partial class LoginPage : System.Web.UI.Page
                 if (user_type.Equals("Subscriber"))
                 {
                     Session["username"] = reader["Username"].ToString();
-                    Response.Redirect("UserHomePage.aspx?");
+                    con1 = new SqlConnection();
+                    con1.ConnectionString = WebConfigurationManager.ConnectionStrings["con1"].ConnectionString;
+                    try
+                    {
+                        con1.Open();
+                        command = new SqlCommand("select Region, Pincode from Users where Username=@var1", con1);
+                        command.Parameters.AddWithValue("@var1", user_name);
+                        reader = command.ExecuteReader();
+
+                        reader.Read();
+                        Session["pincode"] = reader["Pincode"].ToString();
+                        Session["region"] = reader["Region"].ToString();
+                        Response.Redirect("UserHomePage.aspx?");
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
                 }
                 else
                 {
@@ -67,5 +91,10 @@ public partial class LoginPage : System.Web.UI.Page
         {
             con1.Close();
         }
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("SignUp.aspx");
     }
 }
