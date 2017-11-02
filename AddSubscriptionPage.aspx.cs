@@ -13,6 +13,7 @@ public partial class AddSubscriptionPage : System.Web.UI.Page
     string startdate, enddate;
     string monthlyrate;
     int rate;
+    int flag = 1;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -62,27 +63,31 @@ public partial class AddSubscriptionPage : System.Web.UI.Page
         try
         {
             con1.Open();
-            SqlCommand command = new SqlCommand("insert Subscription(Username, P_Name, Status, Start_date, End_date, Pause_start, Pause_end, Region, Pincode  ) VALUES(@var1, @var2, @var3, @var4, @var5, NULL, NULL,@var6, @var7)", con1);
+            SqlCommand command = new SqlCommand("insert Subscription(Username, P_Name, Status, Start_date, End_date, Pause_start, Pause_end, Region, Pincode, Monthly_Rate  ) VALUES(@var1, @var2, @var3, @var4, @var5, NULL, NULL,@var6, @var7, @var8)", con1);
             command.Parameters.AddWithValue("@var1", Session["username"].ToString());
             command.Parameters.AddWithValue("@var2", Label3.Text);
             command.Parameters.AddWithValue("@var3", "Active");
-            DateTime startdate = Convert.ToDateTime(Label5.Text);
+            DateTime startdate = Convert.ToDateTime(Label5.Text).Date;
             command.Parameters.AddWithValue("@var4", startdate);
-            DateTime enddate = Convert.ToDateTime(Label6.Text);
+            DateTime enddate = Convert.ToDateTime(Label6.Text).Date;
             command.Parameters.AddWithValue("@var5", enddate);
             command.Parameters.AddWithValue("@var6", Session["region"].ToString());
             command.Parameters.AddWithValue("@var7", Session["pincode"].ToString());
+            command.Parameters.AddWithValue("@var8", Label4.Text);
             SqlDataReader reader = command.ExecuteReader();
 
         }
         catch (Exception ex)
         {
+            flag = 0;
             ErrorLabel.Text = ex.ToString();
         }
         finally
         {
             con1.Close();
-            Response.Redirect("UserHomePage.aspx");
+            if(flag==1)
+                Response.Redirect("UserHomePage.aspx");
+
         }
     }
  
