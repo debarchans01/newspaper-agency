@@ -50,8 +50,11 @@ public partial class SignUp : System.Web.UI.Page
         {
             ErrorLabel1.Text = ex.ToString();
         }
+        finally
+        {
+            con1.Close();
+            Response.Redirect("StartPage.aspx");
+        }
     }
-
-}
 
 }
