@@ -17,9 +17,13 @@ public partial class AddSubscriptionPage : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (!IsPostBack && Session["username"] != null)
         {
             Label1.Text = "hello " + (string)Session["username"];
+        }
+        else if (Session["username"] == null)
+        {
+            Response.Redirect("LoginPage.aspx");
         }
     }
 
@@ -56,7 +60,12 @@ public partial class AddSubscriptionPage : System.Web.UI.Page
         Label6.Text = enddate.ToString();
     }
 
-    protected void Confirm_Subscription(object sender, EventArgs e)
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("UserHomePage.aspx");
+    }
+
+    protected void Button2_Click(object sender, EventArgs e)
     {
         SqlConnection con1 = new SqlConnection();
         con1.ConnectionString = WebConfigurationManager.ConnectionStrings["con1"].ConnectionString;
@@ -85,20 +94,14 @@ public partial class AddSubscriptionPage : System.Web.UI.Page
         finally
         {
             con1.Close();
-            if(flag==1)
+            if (flag == 1)
                 Response.Redirect("UserHomePage.aspx");
 
         }
     }
- 
-    protected void Reload_Page(object sender, EventArgs e)
-    {
 
+    protected void Button3_Click(object sender, EventArgs e)
+    {
         Response.Redirect("AddSubscriptionPage.aspx");
-    }
-
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("UserHomePage.aspx");
     }
 }

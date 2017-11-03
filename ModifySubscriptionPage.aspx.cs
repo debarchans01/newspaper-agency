@@ -25,7 +25,8 @@ public partial class ModifySubscriptionPage : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack)
+        
+        if (!IsPostBack && Session["username"] != null)
         {
             Label1.Text = "hello " + (string)Session["username"];
             Label5.Visible = false;
@@ -39,7 +40,10 @@ public partial class ModifySubscriptionPage : System.Web.UI.Page
             Calendar2.Visible = false;
             Button1.Visible = false;
             Button2.Visible = false;
-
+        }
+        else if (Session["username"] == null)
+        {
+            Response.Redirect("LoginPage.aspx");
         }
     }
 

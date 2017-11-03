@@ -20,10 +20,10 @@
             <asp:BoundField DataField="Pause_end" HeaderText="Pause_end" SortExpression="Pause_end" />
         </Columns>
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:con1 %>" SelectCommand="SELECT [S_ID], [P_Name], [Status], [Start_date], [End_date], [Pause_start], [Pause_end] FROM [Subscription] WHERE (([Username] = @Username) AND ([Status] = @Status))">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:con1 %>" SelectCommand="SELECT [S_ID], [P_Name], [Status], [Start_date], [End_date], [Pause_start], [Pause_end] FROM [Subscription] WHERE (([Username] = @Username) AND NOT ([Status] = @Status))">
         <SelectParameters>
             <asp:SessionParameter Name="Username" SessionField="username" Type="String" />
-            <asp:Parameter DefaultValue="Active" Name="Status" Type="String" />
+            <asp:Parameter DefaultValue="Cancelled" Name="Status" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">

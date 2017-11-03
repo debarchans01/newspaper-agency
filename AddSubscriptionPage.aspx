@@ -63,7 +63,10 @@
     <asp:Label ID="Label6" runat="server" Text=""></asp:Label>
     <br />
     <br />
-    <input id="Submit1" type="submit" value="Yes" runat="server" onserverclick="Confirm_Subscription"/>&nbsp;&nbsp;
-    <input id="Submit2" type="submit" value="Select Again" runat="server" onserverclick="Reload_Page"/>
+    <asp:Button ID="Button2" runat="server" Text="Yes" OnClick="Button2_Click" />
+    &nbsp;&nbsp;&nbsp;
+    &nbsp;
+
+    <asp:Button ID="Button3" runat="server" Text="Select Again" OnClick="Button3_Click" />
 </asp:Content>
 

@@ -1,24 +1,22 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="EmployeeHomePage.aspx.cs" Inherits="EmployeeHomePage" Theme="" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="EmployeeHomePage.aspx.cs" Inherits="EmployeeHomePage"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:Label ID="Label1" runat="server" text=""></asp:Label>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <br />
     <br />
         
-            Choose option - <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true">
-                <asp:ListItem>-</asp:ListItem>
-                <asp:ListItem>Change Theme</asp:ListItem>
-                <asp:ListItem>Select Delivery Region</asp:ListItem>
-            </asp:DropDownList>
-            <br />
-            <br />
-            <asp:DropDownList ID="DropDownList2" runat="server" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="true" AllowSorting="true" AllowPaging="true" PageSize="4" DataSourceID ="sqlDB"></asp:GridView>
+           Select Delivery Region -
+           
+            <asp:RadioButtonList ID="RadioButtonList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Region" DataValueField="Region" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" AutoPostBack="true">
+    </asp:RadioButtonList>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:con1 %>" SelectCommand="SELECT DISTINCT [Region] FROM [Users]"></asp:SqlDataSource>
+            <asp:GridView ID="GridView1" runat="server" AllowSorting="True" PageSize="4" DataSourceID ="sqlDB"></asp:GridView>
             <asp:SqlDataSource ID="sqlDB" runat="server" ConnectionString="<%$ ConnectionStrings:con1 %>" SelectCommand="select * from Subscription where Region=@var1 order by Pincode">
                 <SelectParameters>
-                    <asp:ControlParameter Name="var1" ControlID="DropDownList2" PropertyName="SelectedValue" />
+                    <asp:ControlParameter Name="var1" ControlID="RadioButtonList1" PropertyName="SelectedValue" />
                 </SelectParameters>
             </asp:SqlDataSource>
             <br />
