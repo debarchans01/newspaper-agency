@@ -15,17 +15,29 @@
     <p style="margin-left: 40px">
         Enter Password :
         <input id="text_Password" type="password" runat="server"/></p><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="text_Password" ErrorMessage="*required" ForeColor="Red"></asp:RequiredFieldValidator>
+    <asp:DropDownList ID="DropDownList4" runat="server">
+    </asp:DropDownList>
     <p style="margin-left: 40px">
         Login as :
-        <asp:DropDownList ID="DropDownList1" runat="server">
+        <asp:DropDownList ID="DropDownList3" runat="server">
         </asp:DropDownList>
-    </p>
+        <asp:RadioButtonList ID="RadioButtonList1" runat="server">
+            <asp:ListItem Value="Subscriber">Subscriber</asp:ListItem>
+            <asp:ListItem Value="Employee">Employee</asp:ListItem>
+        </asp:RadioButtonList>
+        </p>
+  
+    
     <p style="margin-left: 40px">
-        <input id="Submit1" type="submit" value="Login" runat="server" onserverclick="Submit1_ServerClick"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="Button1" runat="server" Text="SignUp" OnClick="Button1_Click" />
+        <asp:Button ID="Button2" runat="server" Text="Login" OnClick="Submit1_ServerClick" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="Button1" runat="server" Text="SignUp" OnClick="Button1_Click" CausesValidation="False"/>
     </p>
     <p style="margin-left: 40px">
         &nbsp;<asp:Label ID="Error_Label" runat="server" Text=""></asp:Label>
     </p>
+    <asp:Panel runat="server">  <asp:DropDownList ID="DropDownList2" runat="server"><asp:ListItem>a</asp:ListItem>
+        <asp:ListItem>b</asp:ListItem></asp:DropDownList>
+  </asp:Panel>
     
 </asp:Content>
 

@@ -14,7 +14,13 @@ public partial class SignUp : System.Web.UI.Page
     {
 
     }
-    protected void SubmitButton1_Clicked(object sender, EventArgs e)
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("LoginPage.aspx");
+    }
+
+    protected void Button2_Click(object sender, EventArgs e)
     {
         string name = Text1.Value;
         string emailid = Text2.Value;
@@ -41,7 +47,7 @@ public partial class SignUp : System.Web.UI.Page
             command.Parameters.AddWithValue("@var7", pincode);
             command.Parameters.AddWithValue("@var8", state);
             command.Parameters.AddWithValue("@var9", country);
-            command.Parameters.AddWithValue("@var10", DropDownList2.SelectedItem.Text);
+            command.Parameters.AddWithValue("@var10", RadioButtonList1.SelectedItem.Text);
             int pin = int.Parse(pincode);
             string region;
             if (pin < 123500)
@@ -55,7 +61,7 @@ public partial class SignUp : System.Web.UI.Page
             command.Parameters.AddWithValue("@var11", region);
 
             SqlDataReader reader = command.ExecuteReader();
-            
+
 
         }
         catch (Exception ex)
@@ -71,11 +77,5 @@ public partial class SignUp : System.Web.UI.Page
             else
                 ErrorLabel1.Text = "Some Error Occurred, Try Again.";
         }
-    }
-
-
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("LoginPage.aspx");
     }
 }

@@ -12,9 +12,13 @@ public partial class BillinDetailsPage : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (!IsPostBack && Session["username"] != null)
         {
             Label1.Text = "hello " + (string)Session["username"];
+        }
+        else if (Session["username"] == null)
+        {
+            Response.Redirect("LoginPage.aspx");
         }
         DataSet ds = new DataSet();
         SqlConnection con1 = new SqlConnection();
@@ -22,7 +26,7 @@ public partial class BillinDetailsPage : System.Web.UI.Page
         try
         {
             con1.Open();
-            SqlCommand command = new SqlCommand("SELECT P_Name, Status, Start_date, End_date, Pause_start, Pause_end, Monthly_Rate from Subscription WHERE Username =@var1 ; ", con1);
+            SqlCommand command = new SqlCommand("SELECT P_Name, Status, Start_date, End_date, Pause_start, Pause_end, Monthly_Rate from Subscription WHERE Username =@var1; ", con1);
             command.Parameters.AddWithValue("@var1", Session["username"].ToString());
             
             SqlDataAdapter ad = new SqlDataAdapter(command);
@@ -58,11 +62,31 @@ public partial class BillinDetailsPage : System.Web.UI.Page
 
             DateTime startdate = (Convert.ToDateTime(row["Start_date"].ToString()));
             DateTime enddate = Convert.ToDateTime(row["End_date"].ToString());
-            //ErrorLabel.Text = (startdate.ToString() + enddate.ToString());
-            double numberofdays = (enddate - startdate).TotalDays;
-            double bill = (monthlyrate / 30 ) * numberofdays;
-            newRow["Amount_Incurred"] = bill.ToString();
 
+            /*if (row["Pause_start"].ToString() != "NULL" && row["Pause_end"].ToString() != "NULL")
+            {
+                DateTime pausestart = (Convert.ToDateTime(row["Pause_start"].ToString()));
+                DateTime pauseend = (Convert.ToDateTime(row["Pause_end"].ToString()));
+                if (enddate > startdate && pausestart > startdate && pauseend < enddate)
+                {
+                    double numberofdays = (enddate - startdate).TotalDays;
+                    double numberofpauseddays = (pauseend - pausestart).TotalDays;
+                    double numberofactivedays = numberofdays - numberofpauseddays;
+                    double bill = (monthlyrate / 30) * numberofactivedays;
+                    newRow["Amount_Incurred"] = bill.ToString();
+                }
+            }*/
+
+            if(enddate > startdate)
+            {
+                double numberofdays = (enddate - startdate).TotalDays;
+                double bill = (monthlyrate / 30) * numberofdays;
+                newRow["Amount_Incurred"] = bill.ToString();
+            }
+            else
+            {
+                newRow["Amount_Incurred"] = 0;
+            }
 
             newTable.Rows.Add(newRow);
         }
@@ -105,5 +129,10 @@ public partial class BillinDetailsPage : System.Web.UI.Page
         table.Columns.Add(col6);
         table.Columns.Add(col7);
         return table;
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("UserHomePage.aspx");
     }
 }

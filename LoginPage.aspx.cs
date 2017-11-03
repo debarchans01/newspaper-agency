@@ -14,11 +14,8 @@ public partial class LoginPage : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            if (Session["username"] == null)
-            {
-                DropDownList1.Items.Add("Subscriber");
-                DropDownList1.Items.Add("Employee");
-            }
+            Session["username"] = null;
+
         }
     }
 
@@ -26,7 +23,7 @@ public partial class LoginPage : System.Web.UI.Page
     {
         string user_name = text_Username.Value;
         string pswd = text_Password.Value;
-        string user_type = DropDownList1.SelectedItem.Text;
+        string user_type = RadioButtonList1.SelectedValue;
 
         SqlConnection con1 = new SqlConnection();
         con1.ConnectionString = WebConfigurationManager.ConnectionStrings["con1"].ConnectionString;
@@ -93,4 +90,5 @@ public partial class LoginPage : System.Web.UI.Page
     {
         Response.Redirect("SignUp.aspx");
     }
+
 }

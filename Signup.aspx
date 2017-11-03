@@ -54,13 +54,17 @@
     <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="Text8" ErrorMessage="*required" ForeColor="Red"></asp:RequiredFieldValidator>
     <br />
     User Type -
-    <asp:DropDownList ID="DropDownList2" runat="server">
+   
+    <asp:RadioButtonList ID="RadioButtonList1" runat="server">
         <asp:ListItem>Subscriber</asp:ListItem>
         <asp:ListItem>Employee</asp:ListItem>
-    </asp:DropDownList>
+    </asp:RadioButtonList>
+   
     <br />
     <p>
-        <input id="SubmitButton1" type="submit" value="Sign Up" runat="server" onserverclick="SubmitButton1_Clicked"/></p>
+        
+        <asp:Button ID="Button2" runat="server" Text="Sign Up" OnClick="Button2_Click" />
+        
     <p>
         <asp:Label ID="ErrorLabel1" runat="server" Text=""></asp:Label>
     </p>
